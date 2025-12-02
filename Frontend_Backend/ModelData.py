@@ -75,7 +75,7 @@ class Database:
         cls.execute("""
             CREATE TABLE IF NOT EXISTS Display (
                 mac_address TEXT PRIMARY KEY NOT NULL,
-                cor TEXT DEFAULT #7ed957,
+                cor TEXT DEFAULT '#7ed957',
                 tema INTEGER DEFAULT 0,
                 img TEXT,
                 FOREIGN KEY (mac_address) REFERENCES Comedouro_Robo(mac_address)
@@ -152,12 +152,12 @@ class DisplayDAO():
     @classmethod
     def atualizar(cls, obj):
         cls.abrir()
+        #    if cor == "DEFAULT":
         sql = """
             UPDATE Display SET cor=?
             UPDATE Display SET tema=?
             UPDATE Display SET img=? 
             WHERE mac_address=?
-
 
         """
         cls.execute(sql, (obj.get_cor(), obj.get_tema(), obj.get_img(), obj.get_mac()))
