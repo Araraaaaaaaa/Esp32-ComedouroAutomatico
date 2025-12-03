@@ -2,15 +2,12 @@ import streamlit as st
 import pandas as pd
 import time
 
-#________________________________________________________________Interface do usuário
 class UInav:
     def menu_usuario():  
         st.sidebar.write("Comedouro Inteligente " + macadress)          
         op = st.sidebar.selectbox("Menu", ["Ver Dados", "Configurar"])
         if op == "Ver Dados": UInav.ver_dados()
         if op == "Configurar": UInav.criar_dados()
-        if st.sidebar.button("Salvar"): pass 
-        #salvar dados no banco
     
     def ver_dados():
         st.title(f"Analisar Dados")
@@ -68,12 +65,30 @@ class UIinput():
                 dic_li["hora"] = {st.time_input(f"Informe o horário {i}: ")}
                 li_json_horaRotinas.append(dic_li)
             if st.button("Enviar"):
-                #enviar 
+                #enviar rotina 
                 pass
+
     def telaIn():
-        pass
+        In_corpadrao = st.checkbox("Cor Padrão", value=True)
+        In_fundopadrao = st.checkbox("Modo Padrão", value=True)
+        if not In_corpadrao:
+            In_corpersonalizado = st.color_picker("Escolha a cor: ", value="#7ed957")
+        if st.button("Enviar"):
+            if In_corpadrao:
+                #Enviar In_corpadrao = #7ed957
+                if In_fundopadrao:
+                    #Enviar IN_fundopadrao = preto
+                else:
+                    #Enviar branco
+            else:
+                #Enviar In_corpersonalizado = X
+                if In_fundopadrao:
+                    #Enviar IN_fundopadrao = preto
+                else:
+                    #Enviar branco
+
     def limpezaIn():
-        if st.button("Submit"):pass
+        if st.button("Confirmar"):pass
 #________________________________________________________________VIEW-CONTROLLER
 class View:
     '''
