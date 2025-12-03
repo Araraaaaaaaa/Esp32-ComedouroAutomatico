@@ -21,10 +21,12 @@ class ComedouroRobo:
 class ReposicaoRacao:
     def __init__(self, iid, address, data): 
         self.set_mac(address)
-        self.set_id(iid)
         self.set_data(data)
+        self.set_id(iid)
     def set_mac(self, mac): self.__mac = mac
-    def set_id(self, idd): self.__id = idd
+    def set_id(self, idd): 
+        try: self.__id = idd
+        except:
     def set_data(self, dt): self.__data = dt
     def get_id(self): return self.__id
     def get_data(self): return self.__data
@@ -44,5 +46,8 @@ class Display:
             #ele vai pro default, caso seja a atualização, fica o valor que já estava antes (possivelmente o default)
             pass
     def get_tema(self): 
-        return self.__tema
+        try: return self.__tema
+        except AttributeError: #Tema pode ser opcional. Caso seja a iniciação do objeto no banco de dados, 
+            #ele vai pro default, caso seja a atualização, fica o valor que já estava antes (possivelmente o default)
+            pass
     def __str__(self): return f"display_MAC ADDRESS: {self.__mac}"
